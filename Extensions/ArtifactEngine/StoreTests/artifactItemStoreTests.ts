@@ -10,7 +10,7 @@ describe('artifactItemStore tests', () => {
     it('addItem should add artifact item to the artifact store', () => {
         var artifactItemStore = new ArtifactItemStore();
 
-        artifactItemStore.addItem(new models.ArtifactItem());
+        artifactItemStore.addItem(new models.ArtifactItem(),{});
 
         assert.equal(artifactItemStore.size(), 1);
     });
@@ -20,8 +20,8 @@ describe('artifactItemStore tests', () => {
         var artifactItem = new models.ArtifactItem();
         artifactItem.path = "path1";
 
-        artifactItemStore.addItem(artifactItem);
-        artifactItemStore.addItem(artifactItem);
+        artifactItemStore.addItem(artifactItem,{});
+        artifactItemStore.addItem(artifactItem,{});
 
         assert.equal(artifactItemStore.size(), 1);
     });
@@ -33,7 +33,7 @@ describe('artifactItemStore tests', () => {
         var artifactItem2 = new models.ArtifactItem();
         artifactItem2.path = "path2";
 
-        artifactItemStore.addItems([artifactItem1, artifactItem2]);
+        artifactItemStore.addItems([artifactItem1, artifactItem2],{});
 
         assert.equal(artifactItemStore.size(), 2);
     });
@@ -43,7 +43,7 @@ describe('artifactItemStore tests', () => {
         var artifactItem = new models.ArtifactItem();
         artifactItem.path = "path1";
 
-        artifactItemStore.addItem(artifactItem);
+        artifactItemStore.addItem(artifactItem,{});
 
         assert.equal(artifactItemStore.getNextItemToProcess().path, artifactItem.path);
     });
@@ -62,8 +62,8 @@ describe('artifactItemStore tests', () => {
         artifactItem1.path = "path1";
         var artifactItem2 = new models.ArtifactItem();
         artifactItem2.path = "path2";
-        artifactItemStore.addItem(artifactItem1);
-        artifactItemStore.addItem(artifactItem2);
+        artifactItemStore.addItem(artifactItem1,{});
+        artifactItemStore.addItem(artifactItem2,{});
 
         artifactItemStore.getNextItemToProcess();
 
@@ -74,7 +74,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem1 = new models.ArtifactItem();
         artifactItem1.path = "path1";
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
 
         artifactItemStore.getNextItemToProcess();
 
@@ -85,7 +85,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem1 = new models.ArtifactItem();
         artifactItem1.path = "path1";
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
 
         artifactItemStore.updateState(artifactItem1, models.TicketState.Skipped);
 
@@ -104,7 +104,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem1 = new models.ArtifactItem();
         artifactItem1.path = "path1";
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
 
         artifactItemStore.updateState(artifactItem1, models.TicketState.InQueue);
 
@@ -115,7 +115,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem1 = new models.ArtifactItem();
         artifactItem1.path = "path1";
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
 
         artifactItemStore.updateState(artifactItem1, models.TicketState.Processing);
 
@@ -126,7 +126,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem1 = new models.ArtifactItem();
         artifactItem1.path = "path1";
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
 
         artifactItemStore.updateState(artifactItem1, models.TicketState.Skipped);
 
@@ -137,7 +137,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem1 = new models.ArtifactItem();
         artifactItem1.path = "path1";
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
 
         artifactItemStore.updateState(artifactItem1, models.TicketState.Processed);
 
@@ -148,7 +148,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem1 = new models.ArtifactItem();
         artifactItem1.path = "path1";
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
 
         artifactItemStore.updateState(artifactItem1, models.TicketState.Failed);
 
@@ -159,8 +159,8 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem = new models.ArtifactItem();
         artifactItem.path = "path1";
-        artifactItemStore.addItem(artifactItem);
-        artifactItemStore.addItem(artifactItem);
+        artifactItemStore.addItem(artifactItem,{});
+        artifactItemStore.addItem(artifactItem,{});
 
         artifactItemStore.flush();
 
@@ -171,7 +171,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem = new models.ArtifactItem();
         artifactItem.path = "path1";
-        artifactItemStore.addItem(artifactItem);
+        artifactItemStore.addItem(artifactItem,{});
         artifactItemStore.updateState(artifactItem, models.TicketState.InQueue);
 
         assert.equal(artifactItemStore.itemsPendingProcessing(), true);
@@ -181,7 +181,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem = new models.ArtifactItem();
         artifactItem.path = "path1";
-        artifactItemStore.addItem(artifactItem);
+        artifactItemStore.addItem(artifactItem,{});
         artifactItemStore.updateState(artifactItem, models.TicketState.Processing);
 
         assert.equal(artifactItemStore.itemsPendingProcessing(), true);
@@ -191,7 +191,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem = new models.ArtifactItem();
         artifactItem.path = "path1";
-        artifactItemStore.addItem(artifactItem);
+        artifactItemStore.addItem(artifactItem,{});
         artifactItemStore.updateState(artifactItem, models.TicketState.Skipped);
 
         assert.equal(artifactItemStore.itemsPendingProcessing(), false);
@@ -201,7 +201,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem = new models.ArtifactItem();
         artifactItem.path = "path1";
-        artifactItemStore.addItem(artifactItem);
+        artifactItemStore.addItem(artifactItem,{});
         artifactItemStore.updateState(artifactItem, models.TicketState.Failed);
 
         assert.equal(artifactItemStore.itemsPendingProcessing(), false);
@@ -211,7 +211,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem = new models.ArtifactItem();
         artifactItem.path = "path1";
-        artifactItemStore.addItem(artifactItem);
+        artifactItemStore.addItem(artifactItem,{});
         artifactItemStore.updateState(artifactItem, models.TicketState.Processed);
 
         assert.equal(artifactItemStore.itemsPendingProcessing(), false);
@@ -227,7 +227,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem1 = new models.ArtifactItem();
         artifactItem1.path = "path1";
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
 
         artifactItemStore.increaseRetryCount(artifactItem1);
         artifactItemStore.increaseRetryCount(artifactItem1);
@@ -240,7 +240,7 @@ describe('artifactItemStore tests', () => {
         var artifactItem1 = new models.ArtifactItem();
         artifactItem1.path = "path1";
 
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
 
         assert.equal(artifactItemStore.getRootLocation(), '');
     });
@@ -250,7 +250,7 @@ describe('artifactItemStore tests', () => {
         var artifactItem1 = new models.ArtifactItem();
         artifactItem1.path = "";
 
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
 
         assert.equal(artifactItemStore.getRootLocation(), '');
     });
@@ -260,7 +260,7 @@ describe('artifactItemStore tests', () => {
         var artifactItem1 = new models.ArtifactItem();
         artifactItem1.path = "";
         artifactItem1.metadata = { downloadUrl: '//dummy/drop' };
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
 
         assert.equal(artifactItemStore.getRootLocation(), '//dummy/drop');
     });
@@ -269,7 +269,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem1 = new models.ArtifactItem();
         var downloadSize = 2000;
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
         artifactItemStore.updateDownloadSize(artifactItem1, downloadSize);
 
         assert.equal(artifactItemStore.getTickets().find(x => x.artifactItem == artifactItem1).downloadSizeInBytes, downloadSize);
@@ -279,7 +279,7 @@ describe('artifactItemStore tests', () => {
         var artifactItemStore = new ArtifactItemStore();
         var artifactItem1 = new models.ArtifactItem();
         var fileSize = 2000;
-        artifactItemStore.addItem(artifactItem1);
+        artifactItemStore.addItem(artifactItem1,{});
         artifactItemStore.updateFileSize(artifactItem1, fileSize);
 
         assert.equal(artifactItemStore.getTickets().find(x => x.artifactItem == artifactItem1).fileSizeInBytes, fileSize);

@@ -53,6 +53,14 @@ export class ZipProvider implements models.IArtifactProvider {
     public dispose(): void {
     }
 
+    getDestination(): Promise<string> {
+        return Promise.resolve(this.zipLocation);
+    }
+
+    getRelativePath(): Promise<string> {
+        return Promise.resolve("");
+    }
+
     private zipLocation: string;
     public httpc: httpm.HttpClient = new httpm.HttpClient('artifact-engine');
 }
